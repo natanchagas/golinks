@@ -1,0 +1,5 @@
+docker exec -it golinks-db /bin/bash
+psql -U golinksadm -d golinks
+
+SELECT * FROM golinks;
+INSERT INTO golinks(original_url, golink, creation_date) VALUES ('https://www.google.com/', '976b88c1', Now());
