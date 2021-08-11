@@ -90,9 +90,23 @@ func ListGolinks(c echo.Context) error {
 	return c.JSON(http.StatusOK, &golink)
 }
 
+func Golink(c echo.Context) error {
+
+	link := c.Param("link")
+
+	pgconn, err := pgbd.Init()
+	if err != nil {
+		panic(err)
+	}
+
+	golink := pgconn.GetByGolink(link)
+
+	return c.Redirect(http.StatusMovedPermanently, golink.OriginalUrl)
+}
+
 func Endpoints(e *echo.Echo) {
 	e.GET("/health", HealthCheck)
 	e.POST("/golink", CreateGolink)
 	e.GET("/golinks", ListGolinks)
-	// e.GET("/golink/:link", handlers.AddCat)
+	e.GET("/:link", Golink)
 }

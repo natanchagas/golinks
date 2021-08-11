@@ -1,5 +1,4 @@
 docker build -t natanchagas/golinks-db:alpha database/.
 docker run -it --name golinks-db --rm -p 5432:5432 natanchagas/golinks-db:alpha
 
-
 kind create cluster --config=infra/kindcluster --name=golinks
