@@ -1,8 +1,6 @@
 package router
 
 import (
-	"html/template"
-
 	"github.com/labstack/echo"
 	"github.com/natanchagas/golinks/front/front"
 	"github.com/natanchagas/golinks/front/objects"
@@ -10,9 +8,7 @@ import (
 
 func New() *echo.Echo {
 
-	t := &objects.Template{
-		templates: template.Must(template.ParseGlob("static/*.html")),
-	}
+	t := objects.NewTemplate("static/*.html")
 
 	// create a new echo instance
 	e := echo.New()
