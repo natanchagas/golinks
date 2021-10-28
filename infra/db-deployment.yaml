@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golinks-db
+spec:
+  selector:
+    matchLabels:
+      app: golinks-db
+  template:
+    metadata:
+      labels:
+        app: golinks-db
+    spec:
+      containers:
+      - name: golinks-api
+        image: natanchagas/golinks-db:alpha
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 1323
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: golinks-db
+spec:
+  selector:
+    app: golinks-db
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

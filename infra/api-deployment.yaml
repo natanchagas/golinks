@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golinks-api
+spec:
+  selector:
+    matchLabels:
+      app: golinks-api
+  template:
+    metadata:
+      labels:
+        app: golinks-api
+    spec:
+      containers:
+      - name: golinks-api
+        image: natanchagas/golinks-api
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 1323
+        envFrom:
+            - configMapRef:
+                name: golinks-api-cm
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: golinks-api
+spec:
+  selector:
+    app: golinks-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 1323

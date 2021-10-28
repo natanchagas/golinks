@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -13,10 +14,10 @@ import (
 )
 
 var pgbd objects.Pgdb = objects.Pgdb{
-	Host:     "localhost",
-	User:     "golinksadm",
-	Password: "mdasknilog",
-	Dbname:   "golinks",
+	Host:     os.Getenv("DB_HOSTNAME"),
+	User:     os.Getenv("DB_USERNAME"),
+	Password: os.Getenv("DB_PASSWORD"),
+	Dbname:   os.Getenv("DB_TABLE"),
 	Port:     5432,
 	Sslmode:  "disable",
 }
