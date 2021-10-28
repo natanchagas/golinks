@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: golinks-api-cm
+data:
+  DB_HOSTNAME: "golinks-db"
+  DB_USERNAME: "golinksadm"
+  DB_PASSWORD: "mdasknilog"
+  DB_TABLE: "golinks"
