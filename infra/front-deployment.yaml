@@ -1,42 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: golinks-api
+  name: golinks-front
 spec:
   selector:
     matchLabels:
-      app: golinks-api
+      app: golinks-front
   template:
     metadata:
       labels:
-        app: golinks-api
+        app: golinks-front
     spec:
       containers:
       - name: golinks-api
-        image: natanchagas/golinks-api
+        image: natanchagas/golinks-front:latest
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
             memory: "512Mi"
             cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
         ports:
         - containerPort: 1323
-        envFrom:
-            - configMapRef:
-                name: golinks-api-cm
+
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: golinks-api
+  name: golinks-front
 spec:
   type: NodePort
   selector:
-    app: golinks-api
+    app: golinks-front
   ports:
     - protocol: TCP
       port: 80
