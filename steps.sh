@@ -7,4 +7,4 @@ docker build -t natanchagas/golinks-api api/.
 docker run -it --name golinks-api --network golinks --rm -p 8081:1323 -e DB_HOSTNAME="golinks-db" -e DB_USERNAME="golinksadm" -e DB_PASSWORD="mdasknilog" -e DB_TABLE="golinks" natanchagas/golinks-api:latest
 
 docker build -t natanchagas/golinks-front front/.
-docker 
+docker run -it --name golinks-front --network golinks --rm -p 8080:1323 -e API_ENDPOINT="http://golinks-api.com/" natanchagas/golinks-front:latest
