@@ -25,8 +25,8 @@ spec:
         ports:
         - containerPort: 1323
         envFrom:
-            - configMapRef:
-                name: golinks-api-cm
+        - configMapRef:
+            name: golinks-api-cm
 ---
 
 apiVersion: v1

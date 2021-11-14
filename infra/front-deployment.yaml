@@ -24,6 +24,9 @@ spec:
             cpu: "1000m"
         ports:
         - containerPort: 1323
+        envFrom:
+        - configMapRef:
+            name: golinks-front-cm
 
 ---
 

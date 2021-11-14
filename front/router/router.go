@@ -8,7 +8,7 @@ import (
 
 func New() *echo.Echo {
 
-	t := objects.NewTemplate("static/*.html")
+	t := objects.NewTemplate("static/")
 
 	// create a new echo instance
 	e := echo.New()
