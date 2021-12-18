@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: golinks-api
+  namespace: golinks
 spec:
   selector:
     matchLabels:
@@ -23,7 +24,7 @@ spec:
             memory: "512Mi"
             cpu: "500m"
         ports:
-        - containerPort: 1323
+        - containerPort: 80
         envFrom:
         - configMapRef:
             name: golinks-api-cm
@@ -33,6 +34,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: golinks-api
+  namespace: golinks
 spec:
   type: NodePort
   selector:
@@ -40,4 +42,4 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 1323
+      targetPort: 80
