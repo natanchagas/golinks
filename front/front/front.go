@@ -20,8 +20,6 @@ func MakeData(extra map[string]interface{}) map[string]interface{} {
 		data[key] = value
 	}
 
-	log.Println(data)
-
 	return data
 }
 
@@ -49,11 +47,33 @@ func ListGolinks(c echo.Context) error {
 	data := make(map[string]interface{})
 	data["golinks"] = links
 
+	log.Println(MakeData(data))
+
 	return c.Render(http.StatusOK, "golinks.html", MakeData(data))
 }
 
 func HealthCheck(c echo.Context) error {
-	return c.Render(http.StatusOK, "health.html", MakeData(nil))
+
+	resp, get_err := http.Get(os.Getenv("API_ENDPOINT") + "/health")
+	if get_err != nil {
+		fmt.Println(get_err)
+	}
+
+	body, read_err := ioutil.ReadAll(resp.Body)
+	if read_err != nil {
+		log.Fatalln(read_err)
+	}
+
+	var health objects.Health
+
+	json.Unmarshal(body, &health)
+
+	data := make(map[string]interface{})
+	data["health"] = health
+
+	log.Println(MakeData(data))
+
+	return c.Render(http.StatusOK, "health.html", MakeData(data))
 }
 
 func Endpoints(e *echo.Echo) {

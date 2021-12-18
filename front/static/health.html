@@ -12,9 +12,9 @@
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Long URIs</h5>
-                        <p class="card-text">You don't want to see URIs as long as this:</p>
-                        <p class="card-text"><small class="text-muted">http://llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.co.uk/</small></p>
+                        <h5 class="card-title">API</h5>
+                        <p class="card-text"><small class="text-muted">Status:</small></p>
+                        <p class="card-text">{{.health.Api}}</p>
                     </div>
                 </div>
             </div>
@@ -22,9 +22,9 @@
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Generate Golink</h5>
-                        <p class="card-text">Get a short golink for your URI:</p>
-                        <p class="card-text"><small class="text-muted">http://golink.com/9b6ec835</small></p>
+                        <h5 class="card-title">Database</h5>
+                        <p class="card-text"><small class="text-muted">Status:</small></p>
+                        <p class="card-text">{{.health.Database}}</p>
                     </div>
                 </div>
             </div>
@@ -32,9 +32,9 @@
             <div class="col-sm-6 col-lg-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Share it</h5>
-                        <p class="card-text">Click and get redirected.</p>
-                        <p class="card-text"><small class="text-muted">It's just this simple.</small></p>
+                        <h5 class="card-title">Overall</h5>
+                        <p class="card-text"><small class="text-muted">Status:</small></p>
+                        <p class="card-text">{{.health.Status}}</p>
                     </div>
                 </div>
             </div>
