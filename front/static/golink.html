@@ -1,0 +1,29 @@
+{{ define "body" }}
+
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 class="display-4 fw-bold">Link Created</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Your link has been created, check it out.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <a href="/"><button class="btn btn-outline-primary w-20 my-2 mx-auto">Generate New Golink</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row justify-content-sm-center">
+            <div class="col-sm-6 col-lg-4 mb-4">
+                <div class="card text-center">
+                    <div class="card-body" >
+                        <h5 class="card-title">{{.golink.Golink}}</h5>
+                        <p class="card-text">{{.golink.OriginalUrl}}</p>
+                        <p class="card-text"><small class="text-muted">{{.golink.CreationDate}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{{ end }}
