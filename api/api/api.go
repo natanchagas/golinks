@@ -11,6 +11,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"github.com/natanchagas/golinks/objects"
+	"github.com/swaggo/echo-swagger"
+	_ "github.com/swaggo/echo-swagger/example/docs"
 )
 
 var pgbd objects.Pgdb = objects.Pgdb{
@@ -110,4 +112,6 @@ func Endpoints(e *echo.Echo) {
 	e.POST("/golink", CreateGolink)
 	e.GET("/golinks", ListGolinks)
 	e.GET("/:link", Golink)
+	url := echoSwagger.URL(os.Getenv("APP_URL"))
+	e.GET("/swagger/*", echoSwagger.EchoWrapHandler(url))
 }

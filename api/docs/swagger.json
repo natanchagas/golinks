@@ -1,0 +1,165 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Welcome to the Golinks API. Golinks is an URL shortener.\n\nThis is a project to learn and understand the creations of APIs with Go. The framework of choice was [Echo](https://echo.labstack.com/), for no special reason. You can take a look on the full source code at [Github](https://github.com/natanchagas/golinks).\n\nYou can check my other projects at [https://github.com/natanchagas](https://github.com/natanchagas).",
+      "version": "0.0.1",
+      "title": "Golinks",
+      "termsOfService": "http://swagger.io/terms/",
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "host": "golinks.natanchagas.com",
+    "basePath": "/api",
+    "tags": [
+      {
+        "name": "golink",
+        "description": "Everything about your golink"
+      },
+      {
+        "name": "health",
+        "description": "Check the application status"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/golinks": {
+        "get": {
+          "tags": [
+            "golink"
+          ],
+          "summary": "List all golinks",
+          "description": "List all active links created.",
+          "operationId": "ListGolinks",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Golink"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/golink": {
+        "post": {
+          "tags": [
+            "golink"
+          ],
+          "summary": "Create a golink",
+          "description": "Create a new golink",
+          "operationId": "CreateGolink",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "OriginalUrl",
+              "in": "body",
+              "description": "The long uri that will be shortened",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Golink-OriginalUrl"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Golink"
+              }
+            }
+          }
+        }
+      },
+      "/:link": {
+        "get": {
+          "tags": [
+            "golink"
+          ],
+          "summary": "Acess golink",
+          "description": "Access golink destination",
+          "operationId": "Golink",
+          "produces": [
+            ""
+          ],
+          "responses": {
+            "302": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/health": {
+        "get": {
+          "tags": [
+            "health"
+          ],
+          "summary": "API health status",
+          "description": "Get status about API and Database",
+          "operationId": "HealthCheck",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "$ref": "#/definitions/Health"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Golink": {
+        "type": "object",
+        "properties": {
+          "OriginalUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "Golink": {
+            "type": "string"
+          },
+          "CreationDate": {
+            "type": "string"
+          }
+        }
+      },
+      "Golink-OriginalUrl": {
+        "type": "object",
+        "properties": {
+          "OriginalUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "Health": {
+        "type": "object",
+        "properties": {
+          "Api": {
+            "type": "string"
+          },
+          "Database": {
+            "type": "string"
+          },
+          "Status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
