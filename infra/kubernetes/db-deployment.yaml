@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: golinks-api
-        image: natanchagas/golinks-db:alpha
+        image: natanchagas/golinks-db:latest
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "512Mi"

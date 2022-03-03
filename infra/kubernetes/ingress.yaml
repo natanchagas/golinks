@@ -11,14 +11,14 @@ spec:
     http:
       paths:
       - pathType: Prefix
-        path: "/"
+        path: /(.*)
         backend:
           service:
             name: golinks-front
             port: 
               number: 80
       - pathType: Prefix
-        path: "/api"
+        path: /api(/|$)(.*)
         backend:
           service:
             name: golinks-api
